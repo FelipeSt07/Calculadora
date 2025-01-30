@@ -36,3 +36,44 @@ document.addEventListener('keydown', function(event) {
         clearDisplay();
     }
 });
+
+
+const resultScientific = document.getElementById('result-scientific');
+const basicCalc = document.querySelector('.basic');
+const scientificCalc = document.querySelector('.scientific');
+
+document.getElementById('basic-mode').addEventListener('click', function() {
+    basicCalc.classList.remove('hidden');
+    scientificCalc.classList.add('hidden');
+});
+
+document.getElementById('scientific-mode').addEventListener('click', function() {
+    scientificCalc.classList.remove('hidden');
+    basicCalc.classList.add('hidden');
+});
+
+// Funciones de la calculadora
+function appendValue(value) {
+    result.value += value;
+    resultScientific.value += value;
+}
+
+function clearDisplay() {
+    result.value = '';
+    resultScientific.value = '';
+}
+
+function deleteLast() {
+    result.value = result.value.slice(0, -1);
+    resultScientific.value = resultScientific.value.slice(0, -1);
+}
+
+function calculateResult() {
+    try {
+        result.value = eval(result.value);
+        resultScientific.value = eval(resultScientific.value);
+    } catch {
+        result.value = 'Error';
+        resultScientific.value = 'Error';
+    }
+}
